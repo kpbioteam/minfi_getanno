@@ -1,0 +1,28 @@
+<tool id="minfi_getanno" name="minfi_getanno" version="0.1.0">
+    <description>get annotation for various Illumina methylation objects</description>
+    <requirements>
+        <requirement type="package" version="1.24.0">bioconductor-minfi</requirement>
+        <requirement type="package" version="0.6.0">bioconductor-illuminahumanmethylation450kanno.ilmn12.hg19</requirement>
+    </requirements>
+    <command detect_errors="exit_code"><![CDATA[
+        Rscript  ${__tool_directory__}/minfi_getanno.R  "$input1" "$output1"
+    ]]></command>
+    <inputs>
+        <param type="data" name="input1" format="rdata" />
+    </inputs>
+    <outputs>
+        <data name="output1" format="txt" />
+    </outputs>
+    <tests>
+        <test>
+            <param name="input1" value="GRSet.rdata"/>
+            <output name="output1" file="getanno.txt"/>
+        </test>
+    </tests>
+    <help><![CDATA[
+        Tool returns requested annotation as a data frame, with each row corresponding to a methylation loci
+    ]]></help>
+    <citations>
+        <citation type="doi">10.1093/bioinformatics/btu049</citation>
+    </citations>
+</tool>
